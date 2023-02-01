@@ -41,14 +41,24 @@ function createMenu(){
 }
 function options(){
     const body= document.querySelector("body");
+    const img=document.createElement("img");
+    const black_background=document.createElement("div");
+    black_background.setAttribute("class","blackscreen");
+    img.src="https://images.unsplash.com/photo-1517957096399-3a4e3d34d95e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+    img.setAttribute("class","background");
     const welcome=document.createElement("p");
-    welcome.innerText="Welcome to the best dating website!";
+    welcome.innerText="Find your love";
+    welcome.setAttribute("class","welcome");
     const label=document.createElement("p");
 
     label.innerText="I am:";
     const button1=document.createElement("button");
     const button2=document.createElement("button");
     const button3=document.createElement("button");
+    label.setAttribute("class","label");
+    button1.setAttribute("class","male");
+    button2.setAttribute("class","female");
+    button3.setAttribute("class","other");
     button1.innerText="Male";
     button2.innerText="Female";
     button3.innerText="Other";
@@ -66,7 +76,9 @@ function options(){
     body.appendChild(label);
     body.appendChild(button1);
     body.appendChild(button2);
-    body.appendChild(button3)
+    body.appendChild(button3);
+    body.appendChild(black_background);
+    body.appendChild(img);
 }
 
 
@@ -99,7 +111,7 @@ function personInfoFetch(gender){
     const name=document.createElement("p");
     name.innerText="Person Name";
     
-    fetch(`https://randomuser.me/api/?gender=${gender}`)
+    fetch(`https://randomuser.me/api/?gender=${gender}?nat=us`)
       .then(function(response){
         return response.json();
       })
@@ -144,7 +156,7 @@ function faceElementCreator(gender){
     button_left.addEventListener("click",()=>{
         faceElementCreator(gender);
     })
-
+    
     
     body.appendChild(image[0]);
     div1.appendChild(person_info);
