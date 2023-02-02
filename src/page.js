@@ -28,10 +28,16 @@ export function createMenu(){
 }
 export function options(){
     const body= document.querySelector("body");
+    body.innerHTML="";
+    body.style.overflowX="hidden";
     const img=document.createElement("img");
     const black_background=document.createElement("div");
+    const info=document.createElement("p");
+    let text=["My fake dating website works by fetching data from the 'This Person Does Not Exist' API."," This API provides realistic-looking profile pictures, generated from artificial intelligence, to give users a realistic experience when searching for potential partners on the website."," The website also uses the API to generate realistic, randomized names and ages for each generated face."," The website also allows users to search for potential partners based on their own criteria, such as age, gender, location, and interests."," This website was made to further enhance my knowledge of APIs."];
+    info.innerHTML=`<p>${text[0]}</p><p>${text[1]}</p><p>${text[2]}</p>`;
+    info.setAttribute("class","text");
     black_background.setAttribute("class","blackscreen");
-    img.src="https://images.unsplash.com/photo-1517957096399-3a4e3d34d95e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+    img.src="https://images.unsplash.com/photo-1569813363237-bd17086c234c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fGRhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
     img.setAttribute("class","background");
     const welcome=document.createElement("p");
     welcome.innerText="Find your love";
@@ -48,7 +54,7 @@ export function options(){
     button3.setAttribute("class","other");
     button1.innerText="Male";
     button2.innerText="Female";
-    button3.innerText="Other";
+    button3.innerText="Cat";
     let is_male=true;
     button1.addEventListener("click",()=>{
         faceElementCreator("female");
@@ -66,6 +72,7 @@ export function options(){
     body.appendChild(button3);
     body.appendChild(black_background);
     body.appendChild(img);
+    body.appendChild(info);
 }
 
 
@@ -73,12 +80,13 @@ function animalElementCreator(){
     const body=document.querySelector("body");
     body.innerHTML="";
     const img=document.createElement("img");
-    fetch("http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true")
+    fetch("https://aws.random.cat/meow",{mode: 'cors'})
       .then(function(response){
         return response.json();
       })
       .then(function(response){
-        img.src=response;
+        console.log(response)
+        img.src=response.file;
       })
 
     img.setAttribute("class","face");
@@ -91,14 +99,14 @@ function animalElementCreator(){
         animalElementCreator();
     })
     body.appendChild(button);
-    return img;
+    
 }
 
 function personInfoFetch(gender){
     const name=document.createElement("p");
     name.innerText="Person Name";
     
-    fetch(`https://randomuser.me/api/?gender=${gender}?nat=us`)
+    fetch(`https://randomuser.me/api/?gender=${gender}`,{mode: 'cors'})
       .then(function(response){
         return response.json();
       })
@@ -119,11 +127,19 @@ function faceElementCreator(gender){
     const button_right=document.createElement("button");
     const button_left=document.createElement("button");
     const button_star=document.createElement("button");
+    const button_back=document.createElement("button");
+    const background=document.createElement("img");
+    const black_background=document.createElement("div");
+    
+    black_background.setAttribute("class","blackscreen1");
+    background.src="https://images.unsplash.com/photo-1613362953792-f608e0a67132?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGRhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
+    background.setAttribute("class","background1");
     body.innerHTML="";
     let image=apiFetch(gender);
 
     div1.setAttribute("class","info");
     div2.setAttribute("class","buttons");
+    button_back.setAttribute("class","back");
     let person_info=personInfoFetch(gender);
     
 
@@ -137,13 +153,16 @@ function faceElementCreator(gender){
     button_left.innerText="❌";
     button_star.innerText="⭐";
     button_right.innerText="🧡";
+    button_back.innerText="GO Back";
     button_right.addEventListener("click",()=>{
         faceElementCreator(gender);
     });
     button_left.addEventListener("click",()=>{
         faceElementCreator(gender);
     })
-    
+    button_back.addEventListener("click",()=>{
+      options();
+    })
     
     body.appendChild(image[0]);
     div1.appendChild(person_info);
@@ -153,6 +172,9 @@ function faceElementCreator(gender){
     div2.appendChild(button_star);
     div2.appendChild(button_right);
     body.appendChild(div2);
+    body.appendChild(button_back);
+    body.appendChild(background);
+    body.appendChild(black_background);
 }
 
 function imageSwipeEventListener(image,gender){
