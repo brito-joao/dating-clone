@@ -11,14 +11,30 @@
         *{
             margin: 0;
             padding: 0;
+            
         }
+        
         body{
             display: flex;
             flex-direction: column;
             align-items: center;
             gap:0.5em;
             font-size: 1.5em;
-            margin-left: 1em;
+            background-color: rgb(10, 1, 1);
+            padding-bottom: 2em;
+            overflow-x: hidden;
+        }
+        .text{
+            position: absolute;
+            padding-top: 5em;
+            padding-left: 1em;
+            padding-right: 1.5em;
+            font-family: 'Play',sans-serif;
+            color:white;
+            top:100%;
+        }
+        .text *{
+            margin-bottom: 1em;
         }
         button{
             width: 10em;
@@ -26,10 +42,9 @@
             border-radius: 2em;
         }
         .face{
-            width: 80vw;
-            max-height: 40em;
-            min-height: 80vw;
-            border:solid;
+            min-width: 100vw;
+            height: 58vh;
+            
             margin-top: 2em;
         }
 
@@ -39,10 +54,11 @@
             
         }
         .buttons *{
-                font-size: 1.2em;
-                width:3em;
-                height: 3em;
-                background-color: white;
+            font-size: 1.4em;
+            width:2.5em;
+            height: 2.5em;
+            background-color: rgba(12, 0, 0, 0.445);
+            border:none;
                 
         }
         .welcome{
@@ -55,15 +71,33 @@
         }
         .background{
             position: absolute;
+            height: 100vh;
+            overflow: hidden;
             z-index: -2;
             
         }
+        .background1{
+            z-index: -2;
+            height: 100vh;
+            position: absolute;
+        }
         .blackscreen{
+            position: absolute;
+            overflow: hidden;
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, 
+                            rgba(136, 4, 4, 0.464), 
+                            rgb(10, 1, 1));
+
+        }
+        .blackscreen1{
             position: absolute;
             z-index: -1;
             width: 120vw;
-            height: 120vh;
-            background-color: rgba(136, 4, 4, 0.361);
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.73);
         }
         .male{
             width:80vw;
@@ -95,15 +129,33 @@
             color:white;
             font-family: 'Play',sans-serif;
             font-size: 0.9em;
+            
+
         }
+        
         .info{
+            margin-top: -2em;
+            margin-left: -1em;
+            margin-bottom: 2em;
             display: flex;
             align-items: flex-start;
-            gap:2em;
+            font-family: 'Play';
+            gap:30vw;
+            color:rgb(194, 215, 244);
+            text-shadow: 0 0 10px #000000, 0 0 10px #000000;
             
+        }
+        .back{
+            color:black;
+            background-color: white;
+            font-size: 1em;
+            width: 70vw;
+            height: 7vh;
+            font-family: 'Play',sans-serif;
         }
         @media (min-width: 700px) {
             /* styles for screens larger than 700px */
+            
             .face{
                 width:20em;
             }
