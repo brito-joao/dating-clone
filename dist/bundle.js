@@ -93,6 +93,11 @@ function animalElementCreator(){
     const body=document.querySelector("body");
     body.innerHTML="";
     const img=document.createElement("img");
+    const button_back=document.createElement("button");
+    const button=document.createElement("button");
+    const black_background=document.createElement("div");
+    black_background.setAttribute("class","blackscreen1");
+    img.src="https://media.tenor.com/DHkIdy0a-UkAAAAC/loading-cat.gif";
     fetch("https://aws.random.cat/meow",{mode: 'cors'})
       .then(function(response){
         return response.json();
@@ -103,15 +108,24 @@ function animalElementCreator(){
       })
 
     img.setAttribute("class","face");
+    button.setAttribute("class","buttonLove");
+    button_back.setAttribute("class","back");
     body.appendChild(img);
 
 
-    const button=document.createElement("button");
-    button.innerText="Next";
+    
+    button.innerText="🧡";
+    button_back.innerText="Go Back";
     button.addEventListener("click",()=>{
         animalElementCreator();
-    })
+    });
+    button_back.addEventListener("click",()=>{
+      options();
+    });
+
     body.appendChild(button);
+    body.appendChild(button_back);
+    body.appendChild(black_background);
     
 }
 
@@ -145,7 +159,7 @@ function faceElementCreator(gender){
     const black_background=document.createElement("div");
     
     black_background.setAttribute("class","blackscreen1");
-    background.src="https://images.unsplash.com/photo-1613362953792-f608e0a67132?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGRhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
+    //background.src="https://images.unsplash.com/photo-1613362953792-f608e0a67132?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGRhdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
     background.setAttribute("class","background1");
     body.innerHTML="";
     let image=apiFetch(gender);
